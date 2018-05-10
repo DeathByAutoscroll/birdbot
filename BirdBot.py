@@ -84,8 +84,11 @@ async def commands(ctx):
 	HelpMsg.add_field(name="Facts", value="Displays info about a user")
 	HelpMsg.add_field(name="Serverfacts", value="Displays info about a server")
 	HelpMsg.add_field(name="Say", value="Repeats what you type")
-	HelpMsg.add_field(name="Seme", value="Get a really outdated meme")
+	HelpMsg.add_field(name="Meme", value="Get a really outdated meme")
+	HelpMsg.add_field(name="Addmeme", value="Add your own memes")
+	HelpMsg.add_field(name="Flip", value="Flips a moon and a shark")
 	HelpMsg.add_field(name="Commands", value="Shows this thing again")
+	HelpMsg.set_thumbnail(url=ctx.message.author.avatar_url)
 	await bot.send_message(ctx.message.author, embed=HelpMsg)
 	print (str(ctx.message.author) + " (" + str(ctx.message.author.id) + ") used the COMMANDS command")
 
@@ -112,5 +115,9 @@ async def addmeme(ctx):
 			await bot.send_message(ctx.message.channel, "Sorry, that file format is either invalid or currently not supported! If you'd like it added, please dm @DeathByAutoscroll#7617")
 	else:
 		await bot.send_message(ctx.message.channel, "Usage: %addmeme <Image URL>")
+
+@bot.command(pass_context=True)
+async def flip(ctx):
+	await bot.send_message(ctx.message.channel, random.choice([":full_moon_with_face: **| Heads**", ":shark: **| Tails**"]))
 
 bot.run(token)
